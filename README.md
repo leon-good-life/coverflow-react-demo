@@ -2,8 +2,8 @@ This is a demo of [coverflow-react](https://github.com/leon-good-life/coverflow-
 ### Installation instructions
 
 
-    git clone https://github.com/leon-good-life/coverflow-react.git
-    cd coverflow
+    git clone https://github.com/leon-good-life/coverflow-react-demo.git
+    cd coverflow-react-demo
     npm install
     npm start
     
