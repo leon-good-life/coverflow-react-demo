@@ -1,4 +1,8 @@
 This is a demo of [coverflow-react](https://github.com/leon-good-life/coverflow-react) project.
+
+### Live Demo
+https://storage.googleapis.com/coverflow-react/index.html
+
 ### Installation instructions
 
 
