@@ -1,1 +1,1 @@
-This is a demo of coverflow-react project.
+This is a demo of [coverflow-react](https://github.com/leon-good-life/coverflow-react) project.
