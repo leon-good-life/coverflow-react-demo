@@ -1,25 +1,40 @@
-form {
-  display: inline-block;
+.demo {
+  text-align: center;
+}
+
+.properties {
+  display: flex;
+  justify-content: center;
   padding: 10px;
-  margin: 10px;
 }
 
-form label {
-  float: left;
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background: #f0f0f0;
+  border-right: solid #d0d0d0 1px;
+  color: #525252;
 }
 
-form input {
-  float: right;
+form > div {
+  display: flex;
+  padding: 3px;
+}
+form > div * {
+  padding: 1px;
+}
+form > div input[type=number],
+form > div input[type=color] {
+  flex-grow: 1;
+  border-width: 0 1px 1px 0;
+  background: white;
 }
 
 code {
   padding: 10px;
   display: inline-block;
-  margin: 10px;
-  background: beige;
-  color: darkgoldenrod;
+  background: #f0f0f0;
+  color: #525252;
 }
 
-.demo {
-  text-align: center;
-}

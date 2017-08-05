@@ -46,63 +46,67 @@ class Demo extends React.Component {
                    itemRatio={`${this.state.itemRatio.x}:${this.state.itemRatio.y}`}
                    background={this.state.background} />
 
-        <div>
+        <div className="properties">
 
           <form>
-            <label>Container Width:</label>
-            <input placeholder="width" 
-                  type="number"
-                  min="1"
-                  value={this.state.width} 
-                  onChange={(e)=>{
-                    this.setState({width: parseInt(e.target.value)});
-                  }} />
-            <br />
-            
-            <label>Container Height:</label>
-            <input placeholder="height" 
-                  type="number" 
-                  min="1"
-                  value={this.state.height} 
-                  onChange={(e)=>{
-                    this.setState({height: parseInt(e.target.value)});
-                  }} />
-            <br />
+            <div>{/*Container Width*/}
+              <label>Container Width:</label>
+              <input placeholder="width" 
+                    type="number"
+                    min="1"
+                    value={this.state.width} 
+                    onChange={(e)=>{
+                      this.setState({width: parseInt(e.target.value)});
+                    }} />
+            </div>
 
-            <label>Item Ratio:</label>
-            <input placeholder="x" 
-                  type="number" 
-                  min="1"
-                  style={{width: '60px'}}
-                  value={this.state.itemRatio.x} 
-                  onChange={(e)=>{
-                    this.setState({
-                      itemRatio: {
-                        x: parseInt(e.target.value),
-                        y: this.state.itemRatio.y
-                      }});
-                  }} />
-            <input placeholder="y" 
-                  type="number" 
-                  min="1"
-                  style={{width: '60px'}}
-                  value={this.state.itemRatio.y}
-                  onChange={(e)=>{
-                    this.setState({
-                      itemRatio: {
-                        x: this.state.itemRatio.x,
-                        y: parseInt(e.target.value)
-                      }});
-                  }} />
-            <br />
+            <div>{/*Container Height*/}
+              <label>Container Height:</label>
+              <input placeholder="height" 
+                    type="number" 
+                    min="1"
+                    value={this.state.height} 
+                    onChange={(e)=>{
+                      this.setState({height: parseInt(e.target.value)});
+                    }} />
+            </div>
 
-            <label>Container Background:</label>
-            <input type="color" 
-                  value={this.state.background} 
-                  onChange={(e)=>{
-                    this.setState({background: e.target.value});
-                  }} />
-            <br/>
+            <div>{/*Item Ratio*/}
+              <label>Item Ratio:</label>
+              <input placeholder="x" 
+                    type="number" 
+                    min="1"
+                    style={{width: '60px'}}
+                    value={this.state.itemRatio.x} 
+                    onChange={(e)=>{
+                      this.setState({
+                        itemRatio: {
+                          x: parseInt(e.target.value),
+                          y: this.state.itemRatio.y
+                        }});
+                    }} />
+              <input placeholder="y" 
+                    type="number" 
+                    min="1"
+                    style={{width: '60px'}}
+                    value={this.state.itemRatio.y}
+                    onChange={(e)=>{
+                      this.setState({
+                        itemRatio: {
+                          x: this.state.itemRatio.x,
+                          y: parseInt(e.target.value)
+                        }});
+                    }} />
+            </div>
+
+            <div>{/*Container Background*/}
+              <label>Container Background:</label>
+              <input type="color" 
+                    value={this.state.background} 
+                    onChange={(e)=>{
+                      this.setState({background: e.target.value});
+                    }} />
+            </div>
           </form>
 
           <br />
