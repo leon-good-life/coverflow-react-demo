@@ -7,12 +7,16 @@ class Demo extends React.Component {
     super(props);
     this.state = {
       width: document.body.offsetWidth,
+      passWidth: true,
       height: 300,
+      passHeight: true,
       itemRatio: {
         x: 8,
         y: 5
       },
-      background: '#f0f0f0'
+      passItemRatio: true,
+      background: '#f0f0f0',
+      passBackground: true
     };
   }
   render(){
@@ -38,18 +42,35 @@ class Demo extends React.Component {
         'img/19.jpg',
         'img/20.jpg'
     ];
+    let props = {};
+    props.imagesArr = imagesArr;
+    if (this.state.passWidth) {
+      props.width = this.state.width;
+    }
+    if (this.state.passHeight){
+      props.height = this.state.height;
+    }
+    if (this.state.passItemRatio) {
+      props.itemRatio = `${this.state.itemRatio.x}:${this.state.itemRatio.y}`;
+    }
+    if (this.state.passBackground) {
+      props.background = this.state.background;
+    }
     return (
       <div className="demo">
-        <CoverFlow imagesArr={imagesArr} 
-                   width={this.state.width}
-                   height={this.state.height}
-                   itemRatio={`${this.state.itemRatio.x}:${this.state.itemRatio.y}`}
-                   background={this.state.background} />
+        <CoverFlow {...props} />
 
         <div className="properties">
 
           <form>
             <div>{/*Container Width*/}
+              <input type="checkbox"
+                    checked={this.state.passWidth}
+                    onChange={(e)=>{
+                      this.setState((prevState, props)=>({
+                        passWidth: !prevState.passWidth
+                      }));
+                    }} />
               <label>Container Width:</label>
               <input placeholder="width" 
                     type="number"
@@ -57,10 +78,18 @@ class Demo extends React.Component {
                     value={this.state.width} 
                     onChange={(e)=>{
                       this.setState({width: parseInt(e.target.value)});
-                    }} />
+                    }}
+                    disabled={!this.state.passWidth} />
             </div>
 
             <div>{/*Container Height*/}
+              <input type="checkbox" 
+                    checked={this.state.passHeight}
+                    onChange={(e)=>{
+                      this.setState((prevState, props)=>({
+                        passHeight: !prevState.passHeight
+                      }));
+                    }} />
               <label>Container Height:</label>
               <input placeholder="height" 
                     type="number" 
@@ -68,10 +97,18 @@ class Demo extends React.Component {
                     value={this.state.height} 
                     onChange={(e)=>{
                       this.setState({height: parseInt(e.target.value)});
-                    }} />
+                    }}
+                    disabled={!this.state.passHeight} />
             </div>
 
             <div>{/*Item Ratio*/}
+              <input type="checkbox" 
+                    checked={this.state.passItemRatio}
+                    onChange={(e)=>{
+                      this.setState((prevState, props)=>({
+                        passItemRatio: !prevState.passItemRatio
+                      }));
+                    }} />
               <label>Item Ratio:</label>
               <input placeholder="x" 
                     type="number" 
@@ -84,7 +121,8 @@ class Demo extends React.Component {
                           x: parseInt(e.target.value),
                           y: this.state.itemRatio.y
                         }});
-                    }} />
+                    }}
+                    disabled={!this.state.passItemRatio} />
               <input placeholder="y" 
                     type="number" 
                     min="1"
@@ -96,27 +134,36 @@ class Demo extends React.Component {
                           x: this.state.itemRatio.x,
                           y: parseInt(e.target.value)
                         }});
-                    }} />
+                    }}
+                    disabled={!this.state.passItemRatio} />
             </div>
 
             <div>{/*Container Background*/}
+              <input type="checkbox" 
+                    checked={this.state.passBackground}
+                    onChange={(e)=>{
+                      this.setState((prevState, props)=>({
+                        passBackground: !prevState.passBackground
+                      }));
+                    }} />
               <label>Container Background:</label>
               <input type="color" 
                     value={this.state.background} 
                     onChange={(e)=>{
                       this.setState({background: e.target.value});
-                    }} />
+                    }}
+                    disabled={!this.state.passBackground} />
             </div>
           </form>
 
           <br />
 
           <code>
-                {`<CoverFlow imagesArr={imagesArr} 
-                      width="${this.state.width}"
-                      height="${this.state.height}"
-                      itemRatio="${this.state.itemRatio.x}:${this.state.itemRatio.y}"
-                      background="${this.state.background}" />`}
+{`<CoverFlow imagesArr={imagesArr} 
+  ${this.state.passWidth ? `width="${this.state.width}"` : ''}
+  ${this.state.passHeight ? `height="${this.state.height}"` : ''}
+  ${this.state.passItemRatio ? `itemRatio="${this.state.itemRatio.x}:${this.state.itemRatio.y}"` : ''}
+    ${this.state.passBackground ? `background="${this.state.background}"` : ''} />`}
           </code>
           <br />
 

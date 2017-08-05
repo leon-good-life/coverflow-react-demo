@@ -31,10 +31,16 @@ form > div input[type=color] {
   background: white;
 }
 
+form > div input:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+
 code {
   padding: 10px;
   display: inline-block;
   background: #f0f0f0;
   color: #525252;
+  white-space: pre-wrap 
 }
 
