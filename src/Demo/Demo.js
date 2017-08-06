@@ -12,7 +12,7 @@ class Demo extends React.Component {
     this.state = {
       width: document.body.offsetWidth,
       passWidth: true,
-      height: 300,
+      height: 250,
       passHeight: true,
       itemRatio: {
         x: 8,
