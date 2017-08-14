@@ -20,7 +20,8 @@ class Demo extends React.Component {
       },
       passItemRatio: true,
       background: '#f0f0f0',
-      passBackground: true
+      passBackground: true,
+      passLabels: false
     };
     window.addEventListener('resize', ()=>{
       this.setState({width: document.body.offsetWidth});
@@ -49,8 +50,34 @@ class Demo extends React.Component {
         'img/19.jpg',
         'img/20.jpg'
     ];
+    let labelsArr = [
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      '10',
+      '11',
+      '12',
+      '13',
+      '14',
+      '15',
+      '16',
+      '17',
+      '18',
+      '19',
+      '20',
+    ];
+    this.labelsArr = labelsArr;
     let props = {};
     props.imagesArr = imagesArr;
+    if (this.state.passLabels) {
+      props.labelsArr = labelsArr;
+    }
     if (this.state.passWidth) {
       props.width = this.state.width;
     }
@@ -71,6 +98,9 @@ class Demo extends React.Component {
             {this.inputRow('height', 'number')}
             {this.itemRatio()}
             {this.inputRow('background', 'color')}
+            <div>
+              {this.passPropCheckbox('passLabels')}<label>Show labels.</label>
+            </div>
           </form>
           {this.code()}
         </div>
@@ -133,11 +163,12 @@ class Demo extends React.Component {
   }
   code(){
     return (<code>
-{`<CoverFlow imagesArr={imagesArr} 
+{`<CoverFlow imagesArr={imagesArr}
   ${this.state.passWidth ? `width="${this.state.width}"` : ''}
   ${this.state.passHeight ? `height="${this.state.height}"` : ''}
   ${this.state.passItemRatio ? `itemRatio="${this.state.itemRatio.x}:${this.state.itemRatio.y}"` : ''}
-    ${this.state.passBackground ? `background="${this.state.background}"` : ''} />`}
+  ${this.state.passBackground ? `background="${this.state.background}"` : ''}
+  ${this.state.passLabels ? `labelsArr="{labelsArr}"` : ''} />`}
           </code>);
   }
 }
