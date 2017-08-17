@@ -19,12 +19,22 @@ class Demo extends React.Component {
         y: 5
       },
       passItemRatio: true,
-      background: '#f0f0f0',
+      background: '#333333',
       passBackground: true,
-      passLabels: false
+      passLabels: true,
+      direction: 'horizontal'
     };
     window.addEventListener('resize', ()=>{
-      this.setState({width: document.body.offsetWidth});
+      this.setState((prevState)=>{
+        if (prevState.direction === 'vertical') {
+          return {
+            height: document.body.offsetHeight
+          };
+        }
+        return {
+          width: document.body.offsetWidth
+        }
+      });
     });
   }
   render(){
@@ -90,10 +100,43 @@ class Demo extends React.Component {
     if (this.state.passBackground) {
       props.background = this.state.background;
     }
+    props.direction = this.state.direction;
+    let demoStyle = {};
+    if (this.state.direction === 'vertical') {
+      demoStyle['flexDirection'] = 'row';
+    } else {
+      demoStyle['flexDirection'] = 'column';
+    }
     return (
-      <div className="demo">
+      <div className="demo" style={demoStyle}>
         <div className="properties">
           <form>
+            <div>
+              <label>Direction:</label>
+              <select onChange={(e)=>{
+                  const val = e.target.value.toLocaleLowerCase();
+                  if (val === 'horizontal') {
+                    this.setState({
+                      direction: val,
+                      width: document.body.offsetWidth,
+                      passWidth: true,
+                      height: 250,
+                      passHeight: true
+                    });
+                  } else {
+                    this.setState({
+                      direction: val,
+                      height: document.body.offsetHeight,
+                      passHeight: true,
+                      width: 310,
+                      passWidth: true
+                    });
+                  }
+                }}>
+                <option>Horizontal</option>
+                <option>Vertical</option>
+              </select>
+            </div>
             {this.inputRow('width', 'number')}
             {this.inputRow('height', 'number')}
             {this.itemRatio()}
@@ -164,11 +207,12 @@ class Demo extends React.Component {
   code(){
     return (<code>
 {`<CoverFlow imagesArr={imagesArr}
+  direction="${this.state.direction}"
   ${this.state.passWidth ? `width="${this.state.width}"` : ''}
   ${this.state.passHeight ? `height="${this.state.height}"` : ''}
   ${this.state.passItemRatio ? `itemRatio="${this.state.itemRatio.x}:${this.state.itemRatio.y}"` : ''}
   ${this.state.passBackground ? `background="${this.state.background}"` : ''}
-  ${this.state.passLabels ? `labelsArr="{labelsArr}"` : ''} />`}
+  ${this.state.passLabels ? `labelsArr={labelsArr}` : ''} />`}
           </code>);
   }
 }

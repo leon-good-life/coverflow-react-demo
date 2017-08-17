@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "coverflow-react": "^0.1.17",
+    "coverflow-react": "^0.1.22",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },
